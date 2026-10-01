@@ -44,14 +44,6 @@ const CHAPTERS: Chapter[] = [
   },
 ];
 
-const LANG_CIRCLES = [
-  { t: "अ", lang: "hi" },
-  { t: "আ", lang: "bn" },
-  { t: "அ", lang: "ta" },
-  { t: "ఆ", lang: "te" },
-  { t: "ಕ", lang: "kn" },
-];
-
 export default function WhySticky() {
   const [active, setActive] = useState(0);
   const figRefs = useRef<(HTMLElement | null)[]>([]);
@@ -87,39 +79,6 @@ export default function WhySticky() {
 
   return (
     <section className="why section" id="why">
-      {/* ---- header panel ---- */}
-      <div className="why-head">
-        <div className="container">
-          <div className="why-panel reveal-scale">
-            <span className="eyebrow eyebrow-pill">Why BhaaratMind</span>
-            <h2>
-              One intelligence,
-              <br />
-              <span className="accent">every Indian voice.</span>
-            </h2>
-            <p className="why-hi" lang="hi">
-              हर भारतीय स्वर, एक ही बुद्धि
-            </p>
-            <p className="why-lede">
-              BhaaratMind reads the context, culture and intent that make each
-              Indian language its own — so you can ask in your own words and get
-              an answer you can act on.
-            </p>
-            <div className="why-langs" aria-hidden="true">
-              <div className="lang-circles">
-                {LANG_CIRCLES.map((l) => (
-                  <span className="lang-circle" lang={l.lang} key={l.lang}>
-                    {l.t}
-                  </span>
-                ))}
-                <span className="lang-circle more">+17</span>
-              </div>
-              <span className="lang-note">22+ languages · one intelligence</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ---- sticky story ---- */}
       <div className="container">
         <div className="why-story">
