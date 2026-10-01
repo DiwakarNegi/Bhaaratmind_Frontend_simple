@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* BhaaratMind — V5a Terracotta
+   Styles are split per surface so each section can be owned independently.
+   Order matters: base tokens first, then sections in page order. */
+@import "./styles/base.css";
+@import "./styles/nav.css";
+@import "./styles/hero.css";
+@import "./styles/marquee.css";
+@import "./styles/problem.css";
+@import "./styles/why.css";
+@import "./styles/voices.css";
+@import "./styles/research.css";
+@import "./styles/early.css";
+@import "./styles/footer.css";

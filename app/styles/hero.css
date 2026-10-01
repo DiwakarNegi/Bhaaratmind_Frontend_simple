@@ -1,0 +1,243 @@
+/* ============================================================
+   HERO
+   Figma 161:133 at 1440: section 880 tall; copy column 600 at x=120,
+   mandala 560×560 at x=792 (bleeds 32px past the 1200 container; the
+   section is full-bleed so nothing clips). 168 + 560 + 152 = 880.
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 880px;
+  padding-top: 168px;
+  padding-bottom: 152px;
+  /* ends on #f4e6d5 so the sand marquee band continues it with no seam */
+  background: linear-gradient(180deg, #fcf6ed 0%, #f7ebda 55%, #f4e6d5 100%);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 600px minmax(0, 1fr);
+  column-gap: 72px;
+  align-items: center;
+}
+
+/* ---------- Copy column (Figma 161:153: 26px between every block) ---------- */
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--stack-hero);
+}
+
+/* Announcement badge + NEW tag (Figma 161:154/155) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  margin: 0;
+  padding: 0 14px 0 6px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-warm);
+  font-size: var(--fs-small);
+  line-height: 1;
+  color: rgba(59, 47, 37, 0.82);
+  transition: background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.badge:hover {
+  background: #fff;
+  border-color: var(--saffron-400);
+}
+.badge-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: var(--ls-label-sm);
+  font-weight: 400;
+  color: var(--night);
+  background: var(--saffron);
+  padding: 3px 8px;
+  border-radius: var(--r-xs);
+}
+.badge-arrow {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.badge:hover .badge-arrow {
+  transform: translateX(4px);
+}
+
+/* Headline (Figma 161:158: Newsreader 70 / 1.04 / -0.02em, two lines in 550) */
+.hero h1 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  color: var(--ink);
+  max-width: 560px;
+  margin: 0;
+  text-wrap: balance;
+}
+.hero h1 .accent {
+  display: block;
+}
+
+/* Lead (Figma 161:161: Inter 18 / 1.5 #5e4e3f, 540 wide) */
+.hero-lead {
+  max-width: 540px;
+  margin: 0;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--text-body-warm);
+}
+
+/* CTA row (Figma 161:162); sizes and colours come from base .btn-lg / .btn-ghost */
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+
+/* FLUENT IN + chips (Figma 161:167-169: 12 inside the block, 8 between chips, 520 wide) */
+.hero-langs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hero-langs .eyebrow {
+  display: block;
+  margin: 0;
+  color: var(--text-muted-warm);
+}
+.lang-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 520px;
+}
+.lang-row .pill:last-child {
+  font-weight: 500;
+}
+
+/* ---------- Lotus mandala (Figma 161:188) ---------- */
+.hero-visual {
+  justify-self: start;
+}
+.mandala-wrap {
+  position: relative;
+  width: 560px;
+  aspect-ratio: 1;
+}
+.mandala-wrap svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+/* view-box makes the rotation centre (280,280) explicit for the translated petal groups */
+.mandala-orbit,
+.mandala-petals-outer,
+.mandala-petals-front,
+.mandala-petals-inner,
+.mandala-core-glow {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+.mandala-orbit {
+  animation: spin 90s linear infinite;
+}
+.mandala-petals-outer {
+  animation: spin 160s linear infinite;
+}
+.mandala-petals-front {
+  animation: spin 120s linear infinite;
+}
+.mandala-petals-inner {
+  animation: spin-rev 80s linear infinite;
+}
+.mandala-core-glow {
+  animation: pulse 4s var(--ease-in-out) infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-rev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandala-orbit,
+  .mandala-petals-outer,
+  .mandala-petals-front,
+  .mandala-petals-inner,
+  .mandala-core-glow {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+/* Between the stacked layout and the Figma 1440 grid a fixed 600px copy column would
+   starve the mandala, and 5vw + 600 + 72 + 560 only fits inside the viewport from
+   1297px up; equal columns keep the composition until then. */
+@media (min-width: 981px) and (max-width: 1296px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 48px;
+  }
+  .hero h1 {
+    max-width: none;
+  }
+  .mandala-wrap {
+    width: min(560px, 100%);
+  }
+}
+
+@media (max-width: 980px) {
+  .hero {
+    min-height: 0;
+    padding-top: 128px;
+    padding-bottom: 56px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+  .hero-visual {
+    order: 2;
+    justify-self: center;
+  }
+  .mandala-wrap {
+    width: min(320px, 70vw);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    padding-top: 112px;
+    padding-bottom: 48px;
+  }
+  .hero-copy {
+    gap: 20px;
+  }
+  .badge {
+    height: 44px;
+    padding: 0 16px 0 8px;
+  }
+  /* align-self: stretch — the copy column is align-items: flex-start, so the row
+     must be stretched for width: 100% on the buttons to mean full width */
+  .hero-cta {
+    flex-direction: column;
+    gap: 10px;
+    align-self: stretch;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    height: 48px;
+  }
+  .mandala-wrap {
+    width: 240px;
+  }
+}

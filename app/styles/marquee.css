@@ -1,0 +1,79 @@
+/* ============================================================
+   LANGUAGE MARQUEE
+   Figma 126:298: sand band (the hero gradient flows into it, no
+   hairlines), 16 top / 64 bottom, eyebrow + 24, 64px mask inside
+   the 1200 container. 16 + 15 + 24 + 64 + 64 = 183.
+   ============================================================ */
+.marquee-section {
+  padding: 16px 0 64px;
+  background: var(--sand);
+}
+.marquee-eyebrow {
+  display: block;
+  text-align: center;
+  margin: 0 0 24px;
+}
+.marquee {
+  position: relative;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+/* Trailing padding equals the gap so the -50% loop is seamless. */
+.marquee-list {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  padding: 0 44px 0 0;
+  margin: 0;
+  list-style: none;
+}
+.marquee-item {
+  font-family: var(--font-indic), var(--font-sans), sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+@media (max-width: 620px) {
+  .marquee-section {
+    padding: 24px 0 40px;
+  }
+  .marquee-eyebrow {
+    font-size: 10px;
+    letter-spacing: var(--ls-label);
+    text-wrap: balance;
+    margin-bottom: 20px;
+  }
+  .marquee {
+    height: 56px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  }
+  .marquee-item {
+    font-size: 26px;
+  }
+  .marquee-list {
+    gap: 32px;
+    padding-right: 32px;
+  }
+}

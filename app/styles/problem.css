@@ -1,0 +1,26 @@
+/* ============================================================
+   PROBLEM STATEMENT
+   ============================================================ */
+.problem {
+  padding: var(--section-y-sm) 0 var(--section-y);
+  background: var(--cream);
+  text-align: center;
+}
+.problem p {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: var(--font-serif), serif;
+  font-size: var(--fs-statement);
+  line-height: var(--lh-statement);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* Beyond Figma (no mobile frame): a nine-line centred rag at 24px is hard to
+   read; left alignment on a phone reads as a statement, not a heading. */
+@media (max-width: 620px) {
+  .problem {
+    text-align: left;
+  }
+}

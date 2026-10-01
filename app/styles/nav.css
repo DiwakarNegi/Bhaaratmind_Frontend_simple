@@ -1,0 +1,219 @@
+/* ============================================================
+   NAVBAR — fixed island. Transparent over the hero; paper glass
+   once scrolled, growing outward by its inset so nothing shifts.
+   At <=860px the same island expands into the menu drawer.
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  padding-top: 22px;
+  transition: padding var(--dur-base) var(--ease-out);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-24);
+  height: 62px;
+  padding: 0;
+  border-radius: var(--r-lg);
+  border: 1px solid transparent;
+  transition: background-color 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out), padding 0.4s var(--ease-out),
+    margin 0.4s var(--ease-out);
+}
+.nav.scrolled .nav-inner {
+  background: rgba(250, 246, 239, 0.85);
+  border-color: var(--border-warm);
+  box-shadow: var(--shadow-nav);
+  backdrop-filter: blur(14px);
+  padding: 0 14px 0 18px;
+  margin-inline: -18px -14px;
+}
+
+/* Brand: the BrandGlyph SVG is the artwork (saffron square + cream disc) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.brand-mark {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+
+/* Links pill */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--border-warm);
+}
+.nav-link {
+  padding: 8px 12px;
+  border-radius: var(--r-xs);
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  font-weight: 400;
+  color: rgba(59, 47, 37, 0.82);
+  transition: background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+.nav-link:hover {
+  background: rgba(228, 116, 43, 0.12);
+  color: var(--saffron-700);
+}
+.nav-link-signin {
+  display: none; /* drawer-only copy of Sign in */
+}
+
+/* Actions */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-signin {
+  padding: 10px 14px;
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  font-weight: 500;
+  color: rgba(59, 47, 37, 0.85);
+  border-radius: var(--r-xs);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav-signin:hover {
+  color: var(--saffron-700);
+}
+.cta-short {
+  display: none; /* swapped in at <=620px */
+}
+.nav-toggle {
+  display: none;
+}
+
+/* ---------- Drawer (<=860px): links + Sign in fold into the island ---------- */
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    place-content: center; /* pack the two rows around the middle so the X crosses centred */
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-warm);
+    background: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    border-radius: 1px;
+    background: var(--ink);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .nav-toggle span + span {
+    margin-top: 5px;
+  }
+  .nav.open .nav-toggle span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+  .nav.open .nav-toggle span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+  .nav-inner {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 62px;
+    padding: 9px 10px 9px 14px;
+    gap: 10px;
+  }
+  .nav.scrolled .nav-inner {
+    margin-inline: 0;
+    padding: 9px 10px 9px 14px;
+  }
+  .nav.open .nav-inner {
+    background: rgba(248, 244, 236, 0.94);
+    border-color: var(--border-warm);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-nav);
+  }
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    order: 3;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin-top: 6px;
+    padding: 8px 4px 4px;
+    border: 0;
+    border-top: 1px solid var(--border-warm);
+    border-radius: 0;
+    background: none;
+  }
+  .nav.open .nav-links {
+    display: flex;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 16px;
+  }
+  .nav-link-signin {
+    display: flex;
+  }
+  .nav-right .nav-signin {
+    display: none;
+  }
+  /* Navbar.tsx sets this on <html> while the drawer is open (and pauses Lenis)
+     so the page beneath stays put. Scoped to the drawer breakpoint so a resize
+     to desktop can never leave the page locked. */
+  html.nav-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 620px) {
+  .nav {
+    padding-top: 12px;
+  }
+  .nav-inner {
+    padding: 9px 8px 9px 12px;
+    gap: 8px;
+  }
+  .nav.scrolled .nav-inner {
+    padding: 9px 8px 9px 12px;
+  }
+  .nav-right {
+    gap: 8px;
+  }
+  .nav-right .btn {
+    height: 40px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+  .cta-long {
+    display: none;
+  }
+  .cta-short {
+    display: inline;
+  }
+}

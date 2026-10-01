@@ -1,0 +1,175 @@
+/* ============================================================
+   EARLY ACCESS
+   ============================================================ */
+.early {
+  padding: 40px 0 var(--section-y);
+  background: var(--sand);
+}
+.early-panel {
+  --focus-ring: var(--saffron-300); /* night panel: keep focus rings visible */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 460px;
+  padding: 64px 24px;
+  border-radius: var(--r-xl);
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--night-900) 0%,
+    var(--night-700) 55%,
+    var(--saffron-700) 100%
+  );
+}
+.early-panel .lotus-l,
+.early-panel .lotus-r {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+.early-panel .lotus-r {
+  right: -20px;
+  bottom: -20px;
+  width: 380px;
+  height: 320px;
+}
+.early-panel .lotus-l {
+  left: -60px;
+  bottom: -60px;
+  width: 300px;
+  height: 260px;
+}
+.early-inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.early-mark,
+.early-inner .eyebrow,
+.early-inner h2,
+.early-inner p,
+.early-form {
+  margin: 0;
+}
+.early-mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  box-shadow: 0 0 44px -8px rgba(240, 160, 70, 0.55);
+}
+.early-inner .eyebrow {
+  display: block;
+  letter-spacing: var(--ls-label-sm);
+  color: var(--linen);
+  white-space: nowrap;
+}
+.early-inner .eyebrow .hi {
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: var(--font-sans), var(--font-indic), sans-serif;
+}
+.early-inner h2 {
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-display);
+  color: var(--text-inverse);
+  text-wrap: balance;
+}
+.early-inner h2 .accent {
+  color: var(--saffron-400);
+}
+.early-inner p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--paper);
+  max-width: 560px;
+}
+.early-form {
+  display: flex;
+  gap: 8px;
+  width: 482px;
+  max-width: 100%;
+  padding-top: 8px;
+}
+.early-form input {
+  flex: 1 1 320px;
+  min-width: 0;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-inverse);
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--fs-small);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+.early-form input::placeholder {
+  color: var(--paper);
+}
+.early-form input:focus {
+  border-color: var(--saffron);
+  background: rgba(255, 255, 255, 0.12);
+}
+.early-form input:focus-visible {
+  outline: 2px solid var(--saffron-300);
+  outline-offset: 2px;
+}
+.early-form .btn {
+  height: 44px;
+  flex: none;
+}
+/* Scoped under .early-inner so it outranks the body-paragraph rule above. */
+.early-inner .early-msg {
+  font-size: var(--fs-small);
+  color: var(--saffron-300);
+}
+/* Empty: out of flow (no gap reserved) but still in the accessibility tree,
+   so the live region exists before a message lands and is announced. */
+.early-inner .early-msg:empty {
+  position: absolute;
+}
+
+@media (max-width: 620px) {
+  .early {
+    padding: 24px 0 72px;
+  }
+  .early-panel {
+    min-height: 0;
+    padding: 48px 20px 56px;
+  }
+  .early-panel .lotus-l {
+    display: none;
+  }
+  .early-panel .lotus-r {
+    width: 200px;
+    height: 168px;
+    right: -40px;
+    bottom: -30px;
+    opacity: 0.5;
+  }
+  .early-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .early-form input {
+    flex: none;
+    width: 100%;
+    background: rgba(20, 12, 6, 0.45);
+    font-size: var(--fs-body); /* 16px: stops iOS Safari zooming the page on focus */
+  }
+  .early-form .btn {
+    width: 100%;
+  }
+}

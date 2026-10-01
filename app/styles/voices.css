@@ -1,0 +1,142 @@
+/* ============================================================
+   MANY VOICES — Figma 126:609
+   The signal diagram is now a looping pixel animation
+   (components/sections/VoicesPixel.tsx): a 1600x640 scene that
+   scales to the panel width and animates only while on screen.
+   ============================================================ */
+.voices {
+  padding: var(--section-y) 0;
+  background: var(--cream);
+}
+.voices-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+.voices-head h2 {
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-display);
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0;
+  text-wrap: balance;
+}
+.voices-head .accent {
+  color: var(--saffron-700);
+}
+.voices-head p {
+  max-width: 620px;
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-secondary);
+}
+
+/* ---------- Animated signal panel ---------- */
+.voices-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-2xl);
+  background: #1c140e; /* matches the animation's dusk-sky base so corners blend */
+}
+.voices-anim {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1600 / 640;
+}
+.voices-anim svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ---------- Principle cards ---------- */
+.voices-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+.vcard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  margin: 0;
+  background: var(--linen);
+  border: 1.5px solid var(--hairline-terracotta);
+  border-radius: 0;
+}
+.vcard .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin: 0;
+  color: var(--saffron-700);
+}
+.vcard .top svg {
+  width: 40px;
+  height: 40px;
+}
+.vcard .top .n {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+.vcard-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vcard h3 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: 500;
+  color: var(--ink-card);
+  margin: 0;
+}
+.vcard p {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.voices-foot {
+  text-align: center;
+  margin-top: 56px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .voices-panel {
+    border-radius: var(--r-xl);
+  }
+  .voices-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .vcard {
+    padding: 24px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .voices-head {
+    margin-bottom: 40px;
+  }
+  .voices-foot {
+    margin-top: 40px;
+  }
+}

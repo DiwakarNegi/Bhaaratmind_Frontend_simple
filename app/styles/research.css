@@ -1,0 +1,296 @@
+/* ============================================================
+   RESEARCH — "Research that shapes how India builds AI"
+   A sticky report-preview on the left that updates as you move
+   through the notes list on the right (AirOps-style). Report
+   previews are pixel-art charts. Stacks on mobile.
+   ============================================================ */
+.research {
+  background: var(--paper);
+  padding: var(--section-y) 0;
+}
+
+/* ---- heading ---- */
+.research-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.research-intro {
+  max-width: 640px;
+}
+.research-intro .eyebrow {
+  display: block;
+  margin: 0 0 16px;
+}
+.research-intro .eyebrow .dev {
+  font-family: var(--font-sans), var(--font-indic), sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  color: var(--saffron-700);
+}
+.research-intro .eyebrow .dev::before {
+  content: "·";
+  margin: 0 7px;
+  color: var(--text-secondary);
+}
+.research-intro h2 {
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-display);
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+.research-intro p {
+  margin: 16px 0 0;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--text-body);
+}
+.research-all {
+  flex: none;
+}
+
+/* ---- grid ---- */
+.research-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+/* sticky report preview */
+.research-preview {
+  position: sticky;
+  top: 120px;
+}
+.report-card {
+  background: #fff;
+  border-radius: var(--r-2xl);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  animation: report-in 0.4s var(--ease-out);
+}
+@keyframes report-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.report-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.report-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--saffron-600);
+}
+.report-stat {
+  font-family: var(--font-serif), serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.report-title {
+  font-family: var(--font-serif), serif;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 10px 0 18px;
+}
+.report-chart {
+  border-radius: var(--r-md);
+  background: var(--cream);
+  padding: 18px;
+  box-shadow: inset 0 0 0 1px rgba(59, 47, 37, 0.06);
+}
+.report-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.report-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: var(--ls-label-sm);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.report-mark {
+  font-weight: 500;
+  color: var(--saffron-700);
+}
+
+/* notes list */
+.research-list {
+  display: flex;
+  flex-direction: column;
+}
+.research-item {
+  padding: 22px 0 22px 20px;
+  border-left: 2px solid var(--hairline);
+  cursor: pointer;
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+.research-item + .research-item {
+  margin-top: 4px;
+}
+.research-item.active {
+  border-left-color: var(--saffron);
+}
+.ri-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-label-sm);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.ri-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--saffron);
+}
+.research-item h3 {
+  font-family: var(--font-serif), serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  margin: 0;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.research-item.active h3,
+.research-item:hover h3 {
+  color: var(--ink);
+}
+.ri-deck {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-body);
+  margin: 8px 0 14px;
+  max-width: 48ch;
+}
+.ri-chart {
+  display: none;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 980px) {
+  .research-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .research-item h3 {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 860px) {
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+  .research-preview {
+    display: none;
+  }
+  .research-item {
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+    padding: 24px 0;
+  }
+  .research-item:first-child {
+    border-top: 0;
+  }
+  .ri-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 4px 0 14px;
+    border-radius: var(--r-md);
+    background: var(--cream);
+    padding: 14px;
+    box-shadow: inset 0 0 0 1px rgba(59, 47, 37, 0.06);
+  }
+}
+
+/* ---- product (Manthan AI) variant ---- */
+.report-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: #2f7a43;
+}
+.report-live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3f8a4e;
+}
+.report-chart--art {
+  padding: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(145.71deg, #f6a42a 0%, #fcebc8 72%);
+}
+.report-chart--art img {
+  width: 100%;
+  max-width: 340px;
+}
+.report-features {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.report-features li {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-strong);
+  background: var(--cream);
+  padding: 7px 11px;
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 0 1px rgba(59, 47, 37, 0.1);
+}
+.research-item.product .ri-dot {
+  background: #3f8a4e;
+}
+
+@media (max-width: 860px) {
+  .ri-chart.ri-chart--art {
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(145.71deg, #f6a42a 0%, #fcebc8 72%);
+  }
+  .ri-chart.ri-chart--art {
+    display: grid;
+    place-items: center;
+  }
+}
