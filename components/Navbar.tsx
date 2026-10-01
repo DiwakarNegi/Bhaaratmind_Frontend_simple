@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import type Lenis from "lenis";
-import { BrandGlyph } from "./icons";
 
 const LINKS = [
   { label: "Why BhaaratMind", href: "#why" },
@@ -77,7 +76,13 @@ export default function Navbar() {
       <div className="container">
         <div className="nav-inner">
           <a className="brand" href="#top" aria-label="BhaaratMind home" onClick={close}>
-            <BrandGlyph className="brand-mark" />
+            <img
+              className="brand-mark"
+              src="/brand/logo.svg"
+              alt=""
+              width={28}
+              height={28}
+            />
             BhaaratMind AI
           </a>
 

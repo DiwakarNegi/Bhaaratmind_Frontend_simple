@@ -30,7 +30,7 @@ export default function Footer() {
             <a className="brand" href="#top">
               <img
                 className="brand-mark"
-                src="/brand/lettermark-28.svg"
+                src="/brand/logo.svg"
                 alt=""
                 width={28}
                 height={28}
