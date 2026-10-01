@@ -54,6 +54,11 @@ export const ANSWER = {
   kicker: "USEFUL ANSWER",
   asked: "ASKED IN HINDI",
   q: "पेंसिल पानी में मुड़ी हुई क्यों दिखती है?",
+  lines: [
+    "Light bends as it passes from water to air —",
+    "refraction. Your eye traces it back to a",
+    "shifted point, so the pencil looks bent.",
+  ],
   pxLines: [
     "Light bends as it passes from",
     "water to air — refraction. Your",

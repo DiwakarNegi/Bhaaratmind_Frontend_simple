@@ -1,4 +1,4 @@
-import LotusMandala from "../visuals/LotusMandala";
+import HeroSun from "../visuals/HeroSun";
 import { ArrowRight } from "../icons";
 
 /** Hero chips (Figma 161:169); BCP-47 tags pick the Noto face via --font-indic. */
@@ -60,7 +60,7 @@ export default function Hero() {
 
           <div className="hero-visual reveal-scale" aria-hidden="true">
             <div className="mandala-wrap">
-              <LotusMandala />
+              <HeroSun />
             </div>
           </div>
         </div>
